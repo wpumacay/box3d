@@ -1,3 +1,5 @@
 #pragma once
 
-void load_mjcf();
+#include <stdbool.h>
+
+bool load_mjcf( const char* filepath );

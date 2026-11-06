@@ -172,6 +172,13 @@ if(PROJECT_IS_TOP_LEVEL)
 		message(STATUS "Skipping Box3D unit tests")
 	endif()
 
+    find_package(Python3 COMPONENTS Interpreter Development.Module)
+    find_package(MuJoCo)
+
+    if(MuJoCo_FOUND)
+        add_subdirectory(src/courage)
+    endif()
+
 	if(BOX3D_SAMPLES)
 		add_subdirectory(samples)
 
@@ -196,13 +203,6 @@ if(PROJECT_IS_TOP_LEVEL)
 	if(BOX3D_DOCS)
 		add_subdirectory(docs)
 	endif()
-
-    find_package(Python3 COMPONENTS Interpreter Development.Module)
-    find_package(MuJoCo)
-
-    if(MuJoCo_FOUND)
-        add_subdirectory(src/courage)
-    endif()
 endif()
 
 # https://stackoverflow.com/questions/72635402/how-to-set-working-directory-in-cmake-visual-studio-2022

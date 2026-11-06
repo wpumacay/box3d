@@ -201,6 +201,14 @@ set(SAMPLE_FILES
     sample_world.cpp
 )
 
+if(TARGET box3d_courage)
+    set(SAMPLE_MUJOCO_FILES
+        sample_mjcf.cpp
+    )
+
+    set(SAMPLE_FILES "${SAMPLE_FILES}"  "${SAMPLE_MUJOCO_FILES}")
+endif()
+
 add_executable(samples ${SAMPLE_FILES})
 
 if(APPLE)
@@ -221,6 +229,10 @@ target_include_directories(samples PRIVATE
 # gfx: the renderer + Draw*/adapter. shared: human, utils (Random*), the
 # benchmark/determinism helpers the samples lean on.
 target_link_libraries(samples PRIVATE gfx shared imgui implot imguizmo sokol nfd)
+
+if(TARGET box3d_courage)
+    target_link_libraries(samples PRIVATE box3d_courage)
+endif()
 
 # MSVC auto-links winmm via a #pragma comment in main.cpp. MinGW ignores that
 # pragma, so link the timeBeginPeriod/timeEndPeriod library explicitly.
