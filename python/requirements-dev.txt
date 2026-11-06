@@ -1,0 +1,9 @@
+mujoco==3.17.0
+numpy
+scipy
+pillow
+ipython
+ipdb
+ruff
+ty
+pybind11-stubgen

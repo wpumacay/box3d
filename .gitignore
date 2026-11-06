@@ -12,3 +12,8 @@ CMakeUserPresets.json
 .fetchcontent-cache/
 *.b3rec
 *.zip
+
+/typings
+/install
+
+compile_commands.json

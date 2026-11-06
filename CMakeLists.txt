@@ -16,6 +16,8 @@ message(STATUS "CMake C++ compiler: ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "CMake system name: ${CMAKE_SYSTEM_NAME}")
 message(STATUS "CMake host system processor: ${CMAKE_HOST_SYSTEM_PROCESSOR}")
 
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+
 # static link to make leak checking easier (_crtBreakAlloc)
 # set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
@@ -194,6 +196,13 @@ if(PROJECT_IS_TOP_LEVEL)
 	if(BOX3D_DOCS)
 		add_subdirectory(docs)
 	endif()
+
+    find_package(Python3 COMPONENTS Interpreter Development.Module)
+    find_package(MuJoCo)
+
+    if(MuJoCo_FOUND)
+        add_subdirectory(src/courage)
+    endif()
 endif()
 
 # https://stackoverflow.com/questions/72635402/how-to-set-working-directory-in-cmake-visual-studio-2022
