@@ -15,5 +15,6 @@ CMakeUserPresets.json
 
 /typings
 /install
+/assets-molmospaces
 
 compile_commands.json
